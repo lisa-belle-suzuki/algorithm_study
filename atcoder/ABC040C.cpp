@@ -107,6 +107,25 @@ ll digit__(ll num){
 
 
 int main(){
+    int N;
+    cin >> N;
+    int a[100002];
+    rep(i,N){
+        cin >> a[i+1];//a[1]~a[N]
+    }
+    int cost[100002];//cost[j] is the min cost needed to get to the jth pole.
+    cost[0] = 0; cost[1] = 0;
+    for(int i=2; i<=N; i++){
+        if (i==2){
+            cost[i] = cost[i-1] + abs(a[i]-a[i-1]);
+        }else{
+            cost[i] = min(
+                cost[i-1] + abs(a[i]-a[i-1]),
+                cost[i-2] + abs(a[i]-a[i-2])
+            );
+        }
+    }
+    cout << cost[N] << endl;
 
     return 0;
 }
