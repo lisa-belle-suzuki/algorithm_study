@@ -97,24 +97,38 @@ ll digit__(ll num){
 
 
 ll A[100002];
-ll Sum[100002];
 
+ll sumFromOnetoN(ll n){
+    return ((n+1)*n)/2;
+}
 
 int main(){
-    ll N,K,a,sum=0;
+    ll N;
+    vector<ll > notIncreaseIdx;
 
-    cin >> N >> K;
-    Sum[0] = 0;
-    for(ll i=1; i<=N; i++){
-        cin >> a;
-        sum += a;
-        Sum[i]=sum;
+    cin >> N;
+    for(ll i=0; i<N; i++){
+        cin >> A[i];
+        if (A[i-1] >= A[i]){
+            notIncreaseIdx.push_back(i);
+        }
     }
-    // N-1 ~ K-1
-    ll res = 0;
-    for(ll i=0; i <(N-K+1); i++){
-        res += (Sum[i+K] - Sum[i]);
+    if (notIncreaseIdx.size()==0){
+        cout << sumFromOnetoN(N) << endl;
+        return 0;
     }
+
+    notIncreaseIdx.push_back(N);
+
+    ll res=0;
+    for(ll i=0; i<notIncreaseIdx.size(); i++){
+        if (i==0){
+            res += sumFromOnetoN(notIncreaseIdx[0]);
+        }else{
+            res += sumFromOnetoN(notIncreaseIdx[i]-notIncreaseIdx[i-1]);
+        }
+    }
+
     cout << res << endl;
     return 0;
 }
