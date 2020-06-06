@@ -4,29 +4,15 @@ using namespace std;
 
 typedef long long int ll;
 
+using Graph = vector<vector<int>>;
+
 int N, X, Y, x, y, o_x, o_y;
 bool isObstacle[402][402];
 bool visited[402][402];
 
 int min_iter = INT_MAX;
 void search(int cur_iter, int x, int y){
-    cout << "cur_iter = " << cur_iter << endl;
-    cout << "x = " << x << " y = " << y << endl;
-    if (min_iter != INT_MAX) return;
-    if (isObstacle[x][y]) return;
-    if (visited[x][y]) return;
-    if (x==X && y==Y){
-        cout << "yeah" << endl;
-        if (cur_iter < min_iter) min_iter = cur_iter;
-        return;
-    }
-    visited[x][y] = true;
-    search(cur_iter + 1, x+1, y+1);
-    search(cur_iter + 1, x, y+1);
-    search(cur_iter + 1, x-1, y+1);
-    search(cur_iter + 1, x+1, y);
-    search(cur_iter + 1, x-1, y);
-    search(cur_iter + 1, x, y-1);
+
 }
 
 int main(){
