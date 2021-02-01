@@ -1,22 +1,22 @@
+import copy
+
 class Stack:
     def __init__(self, nums=[]):
         super().__init__()
-        self.nums = nums
+        self.nums = copy.deepcopy(nums)
 
 
     def isEmpty(self):
         return len(self.nums) == 0
 
 
-    def push(self, elem):
-        self.nums.append(elem)
+    def push(self, num):
+        self.nums.append(num)
         return
 
 
     def pop(self):
-        ret = self.nums[-1]
-        self.nums = self.nums[:-1]
-        return ret
+        return self.nums.pop()
 
 
     def peek(self):
