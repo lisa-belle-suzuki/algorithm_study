@@ -4,6 +4,6 @@ class Solution:
         for i, num in enumerate(nums):
             if num < min_num:
                 min_num = num
-        for i, num in enumerate(nums):
+        for i in range(len(nums)):
             nums[i] -= min_num
         return sum(nums)
